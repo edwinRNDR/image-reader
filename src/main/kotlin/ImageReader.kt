@@ -59,11 +59,11 @@ suspend fun readImageTiles(file: File, tileWidth:Int, tileHeight:Int) : List<Lis
 
             for (v in 0 until height) {
                 for (u in 0 until width) {
-                    val rgb = image.getRGB(xOff + u, yOff + v)
+                    val rgb = image.getRGB(xOff + u, image.height - (1 + yOff + v))
                     bb.putInt(rgb)
-
                 }
             }
+
             bb.rewind()
             cb.write(bb)
             val tile = Tile(xOff, yOff, cb)
